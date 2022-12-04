@@ -1,9 +1,10 @@
 import React from 'react';
 
-export const Item = () => {
+export const HomePage = () => {
     return (
         <div>
-            ItemPage
+            Home
         </div>
     );
 }
+

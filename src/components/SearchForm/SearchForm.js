@@ -2,20 +2,29 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import './SearchForm.css'
+import { Link } from 'react-router-dom';
 
-export const SearchForm = () => {
+export const SearchForm = ({search,handleSearch,handleSubmit}) => {
+
+    const onSubmit = (e) => {
+        e.preventDefault();
+        handleSubmit(e.target.search.value)
+    }
+
     return (
-        <form className='search-form' >
+        <form onSubmit={onSubmit} className='search-form' >
             <input 
-                onChange={console.log} 
+                onChange={(e)=> handleSearch(e.currentTarget.value)} 
                 type="text" 
                 name='search' 
                 className='search-input' 
                 placeholder='Search...' 
-                value='' />
-            <button type='submit' className='search-btn'>
-                <FontAwesomeIcon icon={faSearch}/>
-            </button>
+                value={search} />
+            {/* <Link to='/photos'> */}
+                <button type='submit' className='search-btn'>
+                    <FontAwesomeIcon icon={faSearch}/>
+                </button>
+            {/* </Link> */}
         </form>
     );
 }

@@ -27,7 +27,8 @@ function App() {
     const {data} = await axios.get('https://api.unsplash.com/search/photos/?client_id=_I_Z5aV1s1jZhqolUAgf_7Ko1CPd-dWqsqJp-hIEb8o',{
       params: { 
         query:apiQuery, 
-        per_page:6
+        per_page:8,
+        page:2
       },
     })
     setData(data);

@@ -20,11 +20,9 @@ export const SearchForm = ({search,handleSearch,handleSubmit}) => {
                 className='search-input' 
                 placeholder='Search...' 
                 value={search} />
-            {/* <Link to='/photos'> */}
-                <button type='submit' className='search-btn'>
-                    <FontAwesomeIcon icon={faSearch}/>
-                </button>
-            {/* </Link> */}
+            <button type='submit' className='search-btn'>
+                <FontAwesomeIcon icon={faSearch}/>
+            </button>
         </form>
     );
 }

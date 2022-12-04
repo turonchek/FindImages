@@ -4,3 +4,14 @@
     justify-content: space-around;
     align-items: center;
 }
+
+.img-list__item{
+    margin: 10px;
+}
+
+.img-item{
+    float: left;
+    width:  300px;
+    height: 300px;
+    object-fit: cover;
+}

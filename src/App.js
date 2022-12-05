@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect,useCallback } from 'react';
 import axios from 'axios';
 import { Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header/Header';
@@ -8,12 +8,15 @@ import { HomePage } from './pages/HomePage';
 import { PhotosPage } from './pages/PhotosPage';
 // import { http } from './services/http';
 import './App.css';
+import { Pagination } from './components/Pagination/Pagination';
 
 function App() {
 
   const [search, setSearch] = useState('');
   const [apiQuery, setApiQuery] = useState('');
   const [data, setData] = useState([]);
+  const [currentPage,setCurrentPage] = useState(1);
+
 
   const handleSearch = (newValue) => {
     setSearch(newValue)
@@ -28,7 +31,7 @@ function App() {
       params: { 
         query:apiQuery, 
         per_page:8,
-        page:2
+        page:currentPage
       },
     })
     setData(data);
@@ -36,8 +39,14 @@ function App() {
 
   useEffect(() => {
     getData();
-    
-  }, [apiQuery]);
+    console.log(data)
+  }, [apiQuery,currentPage]);
+
+  const handlePageClick = useCallback((data)=>{
+    let currentPage=1+data.selected;
+    setCurrentPage(currentPage);
+    console.log(currentPage)
+  },[currentPage]) 
 
   return (
     <div className="App">
@@ -52,6 +61,11 @@ function App() {
         <Route path='/photos/:id' element={<ItemPage/>} />
         <Route path='*' element={<Page404/>} />
       </Routes>
+      {data.results.length>0 && <Pagination 
+        handlePageClick={handlePageClick}
+        pageCount={10}
+        currentPage={currentPage}
+        />}
     </div>
   );
 }

@@ -29,15 +29,17 @@ export const ItemPage = () => {
     }, []);
 
     return (
-        <ul className='img-list'>
-            {id}
-            {itemData.map(({urls,alt_description,id}) => (
-                <li className='img-list__item' key={id}>
-                    <div key={id} className='img-wrapper'>
-                        <img className='img-item' src={urls.regular} alt={alt_description} />
-                    </div>
-                </li>
-            ))}
-        </ul>
+        <>
+        Recommended List
+            {itemData && <ul className='img-list'>
+                {itemData.map(({urls,alt_description,id}) => (
+                    <li className='img-list__item' key={id}>
+                        <div key={id} className='img-wrapper'>
+                            <img className='img-item' src={urls.regular} alt={alt_description} />
+                        </div>
+                    </li>
+                ))}
+            </ul>}
+        </>
     );
 }
